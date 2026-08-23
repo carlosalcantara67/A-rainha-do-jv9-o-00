@@ -1,0 +1,535 @@
+/* ===================================
+   RESET E CONFIGURAÇÕES GERAIS
+=================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-primaria: #1a0033;
+    --cor-secundaria: #2d0066;
+    --cor-dourada: gold;
+    --cor-dourada-escura: #ffaa00;
+    --cor-lilas: #c9a0ff;
+    --cor-texto: #f0e6ff;
+    --cor-texto-suave: #e8d5ff;
+    --fonte-principal: 'Georgia', serif;
+    --sombra-dourada: 0 0 20px rgba(255, 215, 0, 0.5);
+    --sombra-dourada-forte: 0 0 40px rgba(255, 215, 0, 0.8);
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria), var(--cor-primaria));
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+/* ===================================
+   PARTÍCULAS DE FUNDO
+=================================== */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--cor-dourada);
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+    opacity: 0.6;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 1;
+    }
+}
+
+/* ===================================
+   CORAÇÕES FLUTUANTES
+=================================== */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1.5em;
+    animation: float-heart 8s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes float-heart {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===================================
+   HEADER / CABEÇALHO
+=================================== */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.header h1 {
+    font-size: 3em;
+    color: var(--cor-dourada);
+    text-shadow: var(--sombra-dourada);
+    margin-bottom: 10px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: var(--sombra-dourada); }
+    to {
+        text-shadow: var(--sombra-dourada-forte),
+                     0 0 60px rgba(255, 215, 0, 0.4);
+    }
+}
+
+.header .subtitle {
+    font-size: 1.2em;
+    color: var(--cor-lilas);
+    font-style: italic;
+}
+
+/* ===================================
+   EFEITO DA COROA
+=================================== */
+.crown {
+    display: inline-block;
+    animation: crown-float 3s ease-in-out infinite;
+}
+
+@keyframes crown-float {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+}
+
+/* ===================================
+   NAVEGAÇÃO DE CAPÍTULOS
+=================================== */
+.nav-chapters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 2px solid var(--cor-dourada);
+    color: var(--cor-dourada);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    font-family: var(--fonte-principal);
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--cor-dourada);
+    color: var(--cor-primaria);
+    transform: scale(1.05);
+    box-shadow: var(--sombra-dourada);
+}
+
+/* ===================================
+   CONTAINER DA HISTÓRIA
+=================================== */
+.story-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================
+   CAPÍTULOS
+=================================== */
+.chapter {
+    display: none;
+    animation: fadeIn 0.8s ease-in-out;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.chapter.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chapter h2 {
+    color: var(--cor-dourada);
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    padding-bottom: 15px;
+}
+
+.chapter p {
+    font-size: 1.15em;
+    line-height: 1.9;
+    margin-bottom: 15px;
+    text-align: justify;
+    color: var(--cor-texto-suave);
+}
+
+.chapter .emoji-icon {
+    font-size: 3em;
+    text-align: center;
+    margin: 20px 0;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ===================================
+   CENA DO JARDIM
+=================================== */
+.garden-scene {
+    background: linear-gradient(to bottom, #87CEEB 0%, #90EE90 60%, #228B22 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.flower {
+    position: absolute;
+    font-size: 2em;
+    animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* ===================================
+   CENA DO CASAMENTO
+=================================== */
+.wedding-scene {
+    background: linear-gradient(to bottom, #fff5f5, #ffe4e1);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.wedding-scene .rings {
+    font-size: 4em;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ===================================
+   CENA DO BEBÊ BRILHANTE
+=================================== */
+.baby-scene {
+    background: linear-gradient(to bottom, #0a0a2e, #1a1a4e);
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.glow-baby {
+    position: relative;
+    display: inline-block;
+    font-size: 4em;
+}
+
+.glow-effect {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 100, 0.8),
+        rgba(255, 200, 0, 0.4),
+        transparent
+    );
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        transform: translate(-50%, -30%) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-50%, -30%) scale(1.3);
+        opacity: 1;
+    }
+}
+
+.light-rays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 255, 100, 0.1) 0deg 10deg,
+        transparent 10deg 20deg
+    );
+    animation: rotate-rays 10s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes rotate-rays {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ===================================
+   BOTÕES DE NAVEGAÇÃO (ANTERIOR/PRÓXIMO)
+=================================== */
+.nav-arrows {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.arrow-btn {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--cor-dourada), var(--cor-dourada-escura));
+    border: none;
+    border-radius: 30px;
+    color: var(--cor-primaria);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--fonte-principal);
+}
+
+.arrow-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.arrow-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===================================
+   CAIXA DA MORAL DA HISTÓRIA
+=================================== */
+.moral-box {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.2),
+        rgba(200, 160, 255, 0.2)
+    );
+    border: 2px solid var(--cor-dourada);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2em;
+}
+
+.moral-box::before {
+    content: '✨';
+    display: block;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* ===================================
+   TIMELINE (opcional)
+=================================== */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--cor-dourada), var(--cor-lilas));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    opacity: 0;
+    animation: slideIn 0.6s forwards;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+@keyframes slideIn {
+    to { opacity: 1; }
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 15px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background: var(--cor-dourada);
+    border-radius: 50%;
+    margin: 0 20px;
+    box-shadow: 0 0 10px var(--cor-dourada);
+}
+
+/* ===================================
+   RESPONSIVIDADE
+=================================== */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .chapter {
+        padding: 25px;
+    }
+
+    .chapter h2 {
+        font-size: 1.5em;
+    }
+
+    .nav-btn {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd) {
+        flex-direction: row;
+    }
+
+    .timeline-content {
+        width: 70%;
+    }
+
+    .arrow-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5em;
+    }
+
+    .header .subtitle {
+        font-size: 1em;
+    }
+
+    .chapter p {
+        font-size: 1em;
+    }
+
+    .nav-chapters {
+        gap: 8px;
+    }
+}
